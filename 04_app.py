@@ -44,7 +44,7 @@ fdf = df[mask]
 # ---------- 标题 ----------
 st.title("🩺 糖尿病数据分析看板")
 st.caption("数据集：Pima Indians Diabetes (UCI) ｜ 共 768 条记录 ｜ "
-           "作者：[你的名字]")
+           "作者：陈嘉岩")
 
 if len(fdf) == 0:
     st.warning("当前筛选条件下没有数据，请放宽条件。")
