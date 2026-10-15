@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8">
+<title>糖尿病筛查数据分析报告</title>
+<style>
+body{font-family:'Microsoft YaHei',sans-serif;max-width:900px;margin:40px auto;padding:0 24px;line-height:1.7;color:#222;}
+h1{border-bottom:3px solid #1B4332;padding-bottom:12px;}
+h2{margin-top:36px;color:#1B4332;}
+table{border-collapse:collapse;width:100%;margin:16px 0;}
+th,td{border:1px solid #ddd;padding:8px 12px;text-align:left;}
+th{background:#1B4332;color:#fff;}
+tr:nth-child(even){background:#f7f7f4;}
+.card{background:#EAF3DE;border-left:5px solid #2D6A4F;padding:16px 20px;margin:24px 0;border-radius:6px;}
+.warn{background:#FAEEDA;border-left:5px solid #BA7517;padding:16px 20px;margin:24px 0;border-radius:6px;}
+.ok{color:#2D6A4F;font-weight:bold;}
+.no{color:#888;}
+.small{color:#666;font-size:13px;}
+@media print{body{margin:0;}}
+</style></head><body>
+<h1>糖尿病筛查数据分析报告</h1>
+<p class="small">生成时间：2026-10-15 10:42　样本量：768 人</p>
+<div class="card">
+<h2>一句话结论</h2>
+<p>本次筛查的 768 名受试者中，<b>268 人确诊糖尿病，患病率 34.9%</b>。在所有被记录的指标里，<b>血糖</b>是与患病关联最强、且在控制其他因素后仍然独立成立的风险指标。</p>
+</div>
+<h2>一、数据概况</h2>
+<table>
+<tr><th>项目</th><th>数值</th></tr>
+<tr><td>受试人数</td><td>768 人</td></tr>
+<tr><td>确诊糖尿病</td><td>268 人（34.9%）</td></tr>
+<tr><td>未患病</td><td>500 人（65.1%）</td></tr>
+<tr><td>分析指标</td><td>8 项</td></tr>
+</table>
+<h2>二、哪些指标真的有风险</h2>
+<p>两个口径都看，因为结论会不一样：</p>
+<h2>2.1 单看一个指标时</h2>
+<table>
+<tr><th>指标</th><th>OR</th><th>95% 置信区间</th><th>p 值</th><th>结论</th></tr>
+<tr><td>血糖</td><td>3.44</td><td>[2.81, 4.20]</td><td>3.05e-33</td><td class='ok'>显著</td></tr>
+<tr><td>体质指数</td><td>2.03</td><td>[1.71, 2.40]</td><td>3.87e-16</td><td class='ok'>显著</td></tr>
+<tr><td>年龄</td><td>1.64</td><td>[1.41, 1.91]</td><td>1.77e-10</td><td class='ok'>显著</td></tr>
+<tr><td>皮褶厚度</td><td>1.62</td><td>[1.37, 1.91]</td><td>1.09e-08</td><td class='ok'>显著</td></tr>
+<tr><td>妊娠次数</td><td>1.59</td><td>[1.36, 1.85]</td><td>2.15e-09</td><td class='ok'>显著</td></tr>
+<tr><td>血清胰岛素</td><td>1.56</td><td>[1.32, 1.85]</td><td>3.53e-07</td><td class='ok'>显著</td></tr>
+<tr><td>家族史评分</td><td>1.43</td><td>[1.23, 1.67]</td><td>3.70e-06</td><td class='ok'>显著</td></tr>
+<tr><td>舒张压</td><td>1.43</td><td>[1.22, 1.67]</td><td>6.41e-06</td><td class='ok'>显著</td></tr>
+</table>
+
+<div class="warn">
+<b>为什么两个口径要一起看：</b><br>
+单看时显著的指标，可能是因为"它和真正的原因绑在一起"。
+比如年龄大的人本来血糖和 BMI 就更高，
+那"年龄看着有风险"可能只是血糖、BMI 在起作用。<br><br>
+把所有指标放进同一个模型（多因素），
+能看出<b>剔除互相影响之后，谁还真的独立起作用</b>。
+</div>
+<h2>2.2 控制其他指标之后（多因素）</h2>
+<table>
+<tr><th>指标</th><th>OR</th><th>95% 置信区间</th><th>p 值</th><th>结论</th></tr>
+<tr><td>血糖</td><td>3.17</td><td>[2.51, 3.99]</td><td>2.94e-22</td><td class='ok'>显著</td></tr>
+<tr><td>体质指数</td><td>1.91</td><td>[1.50, 2.43]</td><td>1.38e-07</td><td class='ok'>显著</td></tr>
+<tr><td>妊娠次数</td><td>1.52</td><td>[1.23, 1.89]</td><td>1.19e-04</td><td class='ok'>显著</td></tr>
+<tr><td>家族史评分</td><td>1.34</td><td>[1.10, 1.62]</td><td>3.16e-03</td><td class='ok'>显著</td></tr>
+<tr><td>年龄</td><td>1.17</td><td>[0.94, 1.45]</td><td>1.71e-01</td><td class='no'>不显著</td></tr>
+<tr><td>皮褶厚度</td><td>1.03</td><td>[0.82, 1.29]</td><td>7.93e-01</td><td class='no'>不显著</td></tr>
+<tr><td>血清胰岛素</td><td>0.90</td><td>[0.75, 1.09]</td><td>3.01e-01</td><td class='no'>不显著</td></tr>
+<tr><td>舒张压</td><td>0.89</td><td>[0.73, 1.09]</td><td>2.75e-01</td><td class='no'>不显著</td></tr>
+</table>
+<h2>三、差异有多大（效应量）</h2>
+<table>
+<tr><th>指标</th><th>患病组</th><th>未患病组</th><th>差值</th><th>95% CI</th><th>p 值</th><th>效应量 d</th></tr>
+<tr><td>妊娠次数</td><td>4.87</td><td>3.30</td><td>+1.57</td><td>[+1.05, +2.09]</td><td>6.82e-09</td><td>+0.48</td></tr>
+<tr><td>血糖</td><td>142.13</td><td>110.68</td><td>+31.45</td><td>[+27.29, +35.61]</td><td>3.54e-41</td><td>+1.19</td></tr>
+<tr><td>舒张压</td><td>75.12</td><td>70.92</td><td>+4.20</td><td>[+2.43, +5.98]</td><td>4.20e-06</td><td>+0.35</td></tr>
+<tr><td>皮褶厚度</td><td>31.69</td><td>27.73</td><td>+3.96</td><td>[+2.68, +5.24]</td><td>2.47e-09</td><td>+0.46</td></tr>
+<tr><td>血清胰岛素</td><td>164.70</td><td>127.79</td><td>+36.91</td><td>[+23.14, +50.68]</td><td>2.20e-07</td><td>+0.44</td></tr>
+<tr><td>体质指数</td><td>35.38</td><td>30.89</td><td>+4.50</td><td>[+3.52, +5.47]</td><td>2.55e-18</td><td>+0.69</td></tr>
+<tr><td>家族史评分</td><td>0.55</td><td>0.43</td><td>+0.12</td><td>[+0.07, +0.17]</td><td>6.10e-06</td><td>+0.37</td></tr>
+<tr><td>年龄</td><td>37.07</td><td>31.19</td><td>+5.88</td><td>[+4.21, +7.55]</td><td>1.20e-11</td><td>+0.51</td></tr>
+</table>
+<p class="small">Cohen's d 经验阈值：0.2 小效应 / 0.5 中效应 / 0.8 大效应。</p>
+<h2>四、这个结论不能说什么</h2>
+
+<div class="warn">
+<b>1. 相关性不等于因果性。</b>
+本数据是横断面的（同一次筛查的快照），
+只能说"血糖高的人里患病的多"，
+<b>不能说"降血糖就能防糖尿病"</b>。
+要证明因果需要前瞻性队列研究或干预试验。<br><br>
+<b>2. 人群不代表全体。</b>
+样本仅含成年皮马印第安女性，
+结论不可直接外推到男性、其他族裔或青少年。<br><br>
+<b>3. 约一半的胰岛素记录是填充值。</b>
+该列近半数为无效 0，经中位数填充后方差被压缩，
+与胰岛素相关的统计量被系统性低估。
+</div>
+</body></html>
