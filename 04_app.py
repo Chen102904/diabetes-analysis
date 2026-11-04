@@ -60,7 +60,18 @@ GROUP_ORDER = ["偏瘦", "正常", "超重", "肥胖"]
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv(BASE_DIR / "data" / "china_analysis.csv")
+    # 优先读精简 parquet（~2MB，进 Git 供云端用）；本地若无则回退读完整 CSV
+    parquet_path = BASE_DIR / "data" / "china_app.parquet"
+    csv_path = BASE_DIR / "data" / "china_analysis.csv"
+    if parquet_path.exists():
+        df = pd.read_parquet(parquet_path)
+    elif csv_path.exists():
+        df = pd.read_csv(csv_path)
+    else:
+        raise FileNotFoundError(
+            "找不到数据文件。请先运行 `python prepare_app_data.py` 生成 "
+            "data/china_app.parquet。"
+        )
     df["male"] = (df["gender"] == 1).astype(int)
     # 保证 bmi_cat 是分类，按中国切点 24/28
     if "bmi_cat" not in df.columns:

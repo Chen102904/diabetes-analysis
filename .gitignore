@@ -30,5 +30,7 @@ data/charls_manifest.json
 # 中国体检队列原始数据（Dryad CC0）：体积大，不入库
 data/raw_china/
 
-# 清洗后的 21 万队列（29MB）：可用 run_all.py 从原始数据重新生成，不入库
+# 清洗后的 21 万队列（29MB）：不入库
+# 看板用精简版 china_app.parquet（~2MB，见 prepare_app_data.py），CSV 只留本地
 data/china_analysis.csv
+data/china_app.csv
