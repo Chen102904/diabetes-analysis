@@ -1,5 +1,9 @@
-pandas
-matplotlib
-streamlit
-scipy
-statsmodels
+# 依赖清单
+# Streamlit Community Cloud 会读取本文件安装依赖。
+# 这里用「主版本范围」而不是精确版本：精确锁定某个小版本时，
+# 一旦云端 Python 版本没有对应的 wheel，构建会直接失败且报错难懂。
+pandas>=2.2,<4
+matplotlib>=3.8,<4
+streamlit>=1.49,<2
+scipy>=1.11,<2
+statsmodels>=0.14,<1
