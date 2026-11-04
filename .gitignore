@@ -19,3 +19,16 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+
+# CHARLS 原始数据：协议禁止发布原始微观数据，永不入库
+data/raw_charls/
+data/charls_merged.csv
+data/charls_manifest.json
+*.dta
+*.DTA
+
+# 中国体检队列原始数据（Dryad CC0）：体积大，不入库
+data/raw_china/
+
+# 清洗后的 21 万队列（29MB）：可用 run_all.py 从原始数据重新生成，不入库
+data/china_analysis.csv
